@@ -1,0 +1,21 @@
+*spacejam.txt* Smart whitespace trimming on save(BufWritePre).
+ ______  ______  ______  ______  ______         __  ______  __    __
+ /\  ___\/\  == \/\  __ \/\  ___\/\  ___\       /\ \/\  __ \/\ "-./  \
+ \ \___  \ \  _-/\ \  __ \ \ \___\ \  __\      _\_\ \ \  __ \ \ \-./\ \
+  \/\_____\ \_\   \ \_\ \_\ \_____\ \_____\   /\_____\ \_\ \_\ \_\ \ \_\
+    \/_____/\/_/    \/_/\/_/\/_____/\/_____/   \/_____/\/_/\/_/\/_/  \/_/
+
+Author: Jonathan Jackson
+
+INTRODUCTION                                    *spacejam*
+
+This plugin automatically removes trailing whitespace for ruby, python, javascript, et al.  It also provides a trim command to remove trailing whitespace on demand for files that are not specified in the autocmd.
+
+COMMANDS                                        *spacejam*
+
+:Trim  Remove extra whitespace from current buffer.
+
+ABOUT                                           *spacejam-about*
+
+:credit
+The innards of this plugin were taken from an episode of Vimcasts.  Hope it helps you!
