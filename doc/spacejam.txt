@@ -11,9 +11,9 @@ INTRODUCTION                                    *spacejam*
 
 This plugin automatically removes trailing whitespace for ruby, python, javascript, et al.  It also provides a trim command to remove trailing whitespace on demand for files that are not specified in the autocmd.
 
-COMMANDS                                        *spacejam*
+COMMANDS                                        *spacejam-commands*
 
-:Trim  Remove extra whitespace from current buffer.
+:Trim  Remove extra whitespace from current buffer. Optionally accepts range, defaults to whole file.
 
 ABOUT                                           *spacejam-about*
 
