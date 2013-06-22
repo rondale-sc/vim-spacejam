@@ -7,16 +7,16 @@ if exists("g:loaded_spacejam") || &cp
 endif
 let g:loaded_spacejam = 1
 
+command! -range=% Trim <line1>,<line2>call s:Trim()
+
 if has("autocmd")
   augroup spacejam
-    autocmd BufWritePre .vimrc,*.rb,*.py,*.js call s:Trim()
+    autocmd BufWritePre .vimrc,*.rb,*.py,*.js call AutoTrim()
   augroup END
 endif
 
-command! -range Trim <line1>,<line2>call s:Trim()
-
-function! Trim()
-  call s:Trim()
+function! AutoTrim()
+  :1,$call s:Trim()
 endfunction
 
 " Strip Trailing Whitespace Function (credit vimcasts)
