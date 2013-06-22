@@ -13,20 +13,25 @@ if has("autocmd")
   augroup END
 endif
 
-command! Trim call s:Trim()
+command! -range Trim <line1>,<line2>call s:Trim()
 
 function! Trim()
   call s:Trim()
 endfunction
 
 " Strip Trailing Whitespace Function (credit vimcasts)
-function! s:Trim()
-  " Preparation save last search, and cursor position.
+function! s:Trim() range
   let _s=@/
   let l = line(".")
   let c = col(".")
-  " Do the business:
-  %s/\s\+$//e
+
+  for lineno in range(a:firstline, a:lastline)
+    " Do the business:
+    let line = getline(lineno)
+    let cleanLine = substitute(line, '\(\s\| \)\+$', '', 'e')
+    call setline(lineno, cleanLine)
+  endfor
+
   " Clean up restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
