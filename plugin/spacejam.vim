@@ -7,11 +7,17 @@ if exists("g:loaded_spacejam") || &cp
 endif
 let g:loaded_spacejam = 1
 
+if !exists('g:spacejam_filetypes')
+  let g:spacejam_filetypes = 'ruby,javascript,vim,perl'
+endif
+
 command! -range=% Trim <line1>,<line2>call s:Trim()
 
 if has("autocmd")
   augroup spacejam
-    autocmd BufWritePre .vimrc,*.rb,*.py,*.js call AutoTrim()
+    let g:spacejam_autocmd = "autocmd FileType " . g:spacejam_filetypes . " :autocmd! BufWritePre <buffer> call AutoTrim()"
+
+    exec g:spacejam_autocmd
   augroup END
 endif
 
