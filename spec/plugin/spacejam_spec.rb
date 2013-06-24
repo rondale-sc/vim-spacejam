@@ -17,23 +17,14 @@ describe "spacejam.vim" do
 
   context "overriding defaults" do
     before do
-      vim.command "let g:spacejam_filetypes = 'markdown'"
+      vim.command "let g:spacejam_filetypes = 'html'"
       vim.add_plugin(plugin_path, 'plugin/spacejam.vim')
     end
 
-    let(:filename) { 'test.md' }
-    let(:sample_text) { "# Test header   " }
+    let(:filename) { 'test.html' }
+    let(:sample_text) { "<h1>Test</h1>" }
 
-    it "strips whitespace" do
-      write_file(filename, sample_text)
-
-      puts vim.echo 'g:spacejam_filetypes'
-      vim.edit filename
-      puts vim.command "au * <buffer>"
-      vim.write
-
-      expect(File.read(filename)).to eql(sample_text.strip + "\n")
-    end
+    include_context "strips trailing whitespace"
   end
 
   context "default filetypes" do
