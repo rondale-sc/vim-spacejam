@@ -15,26 +15,34 @@ command! -range=% Trim <line1>,<line2>call s:Trim()
 
 if has("autocmd")
   augroup spacejam
-    let g:spacejam_autocmd = "autocmd FileType " . g:spacejam_filetypes . " :autocmd! BufWritePre <buffer> call AutoTrim()"
+    let g:spacejam_autocmd = "autocmd FileType " . g:spacejam_filetypes . " :autocmd! BufWritePre <buffer> call s:AutoTrim()"
 
     exec g:spacejam_autocmd
   augroup END
 endif
 
-function! AutoTrim()
-  call s:Trim()
-endfunction
-
-" Strip Trailing Whitespace Function (credit vimcasts)
 function! s:Trim() range
   let _s=@/
   let l = line(".")
   let c = col(".")
 
-  " Do the business:
+  for lineno in range(a:firstline, a:lastline)
+    let line = getline(lineno)
+    let cleanLine = substitute(line, '\(\s\| \)\+$', '', 'e')
+    call setline(lineno, cleanLine)
+  endfor
+
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+function! s:AutoTrim()
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+
   %s/\s\+$//e
 
-  " Clean up restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
 endfunction
