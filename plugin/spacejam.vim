@@ -8,7 +8,7 @@ endif
 let g:loaded_spacejam = 1
 
 if !exists('g:spacejam_filetypes')
-  let g:spacejam_filetypes = 'ruby,javascript,vim,perl'
+  let g:spacejam_filetypes = 'ruby,javascript,vim,perl,sass,scss,css'
 endif
 
 command! -range=% Trim <line1>,<line2>call s:Trim()
