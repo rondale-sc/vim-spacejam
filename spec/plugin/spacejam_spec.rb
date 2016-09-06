@@ -12,7 +12,7 @@ shared_context "strips trailing whitespace" do
 end
 
 describe "spacejam.vim" do
-  let(:default_filetypes) { 'ruby,javascript,vim,perl,sass,scss,css,coffee,haml' }
+  let(:default_filetypes) { 'ruby,javascript,vim,perl,sass,scss,css,coffee,haml,elixir' }
   let(:plugin_path) { File.expand_path('../../../',__FILE__) }
 
   context "overriding defaults" do
