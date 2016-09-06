@@ -75,5 +75,21 @@ describe "spacejam.vim" do
 
       include_context "strips trailing whitespace"
     end
+
+    context "elixir" do
+      context ".exs files" do
+        let(:filename) { 'test.exs' }
+        let(:sample_text) { "blah = 'test'    " }
+
+        include_context "strips trailing whitespace"
+      end
+
+      context ".ex files" do
+        let(:filename) { 'test.ex' }
+        let(:sample_text) { "blah = 'test'    " }
+
+        include_context "strips trailing whitespace"
+      end
+    end
   end
 end
