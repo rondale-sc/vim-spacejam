@@ -30,6 +30,25 @@ describe 'spacejam.vim' do
     include_context 'strips trailing whitespace'
   end
 
+  context 'disabling auto trim' do
+    before do
+      vim.command "let g:spacejam_autocmd = ''"
+      vim.add_plugin(plugin_path, 'plugin/spacejam.vim')
+    end
+
+    let(:filename) { 'test.rb' }
+    let(:sample_text) { "blah = 'test'    \n" }
+
+    it 'does not strip whitespace' do
+      write_file(filename, sample_text)
+
+      vim.edit filename
+      vim.write
+
+      expect(File.read(filename)).to eql(sample_text)
+    end
+  end
+
   context 'default filetypes' do
     before do
       vim.add_plugin(plugin_path, 'plugin/spacejam.vim')

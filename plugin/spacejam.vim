@@ -15,7 +15,9 @@ command! -range=% Trim <line1>,<line2>call s:Trim()
 
 if has('autocmd')
   augroup spacejam
-    let g:spacejam_autocmd = 'autocmd FileType ' . g:spacejam_filetypes . ' :autocmd! BufWritePre <buffer> call s:AutoTrim()'
+    if !exists('g:spacejam_autocmd')
+      let g:spacejam_autocmd = 'autocmd FileType ' . g:spacejam_filetypes . ' :autocmd! BufWritePre <buffer> call s:AutoTrim()'
+    endif
 
     exec g:spacejam_autocmd
   augroup END
