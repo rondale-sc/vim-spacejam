@@ -2,7 +2,7 @@
 " Author: Jonathan Jackson
 " Version: 1.0
 
-if exists("g:loaded_spacejam") || &cp
+if exists('g:loaded_spacejam') || &cp
   finish
 endif
 let g:loaded_spacejam = 1
@@ -13,9 +13,11 @@ endif
 
 command! -range=% Trim <line1>,<line2>call s:Trim()
 
-if has("autocmd")
+if has('autocmd')
   augroup spacejam
-    let g:spacejam_autocmd = "autocmd FileType " . g:spacejam_filetypes . " :autocmd! BufWritePre <buffer> call s:AutoTrim()"
+    if !exists('g:spacejam_autocmd')
+      let g:spacejam_autocmd = 'autocmd FileType ' . g:spacejam_filetypes . ' :autocmd! BufWritePre <buffer> call s:AutoTrim()'
+    endif
 
     exec g:spacejam_autocmd
   augroup END
@@ -23,8 +25,8 @@ endif
 
 function! s:Trim() range
   let _s=@/
-  let l = line(".")
-  let c = col(".")
+  let l = line('.')
+  let c = col('.')
 
   for lineno in range(a:firstline, a:lastline)
     let line = getline(lineno)
@@ -38,8 +40,8 @@ endfunction
 
 function! s:AutoTrim()
   let _s=@/
-  let l = line(".")
-  let c = col(".")
+  let l = line('.')
+  let c = col('.')
 
   %s/\s\+$//e
 

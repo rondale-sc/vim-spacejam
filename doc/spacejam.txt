@@ -15,6 +15,11 @@ COMMANDS                                        *spacejam-commands*
 
 :Trim  Remove extra whitespace from current buffer. Optionally accepts range, defaults to whole file.
 
+CONFIGURATION                                   *spacejam-configuration*
+
+To disable automatic trimming on save, add `let g:spacejam_autocmd=''` before
+loading the plugin.
+
 ABOUT                                           *spacejam-about*
 
 :credit
