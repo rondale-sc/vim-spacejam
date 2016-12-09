@@ -13,7 +13,7 @@ end
 
 describe 'spacejam.vim' do
   let(:default_filetypes) do
-    'ruby,javascript,vim,perl,sass,scss,css,coffee,haml'
+    'ruby,javascript,vim,perl,sass,scss,css,coffee,haml,elixir'
   end
 
   let(:plugin_path) { File.expand_path('../../../', __FILE__) }
@@ -93,6 +93,17 @@ describe 'spacejam.vim' do
 
     context 'perl files' do
       let(:filename) { 'test.pl' }
+      let(:sample_text) { "$blah='test';    " }
+
+      include_context 'strips trailing whitespace'
+    end
+
+    context 'elixir files' do
+      before do
+        #vim doesn't recognize elixir by default
+        vim.command "au BufRead *.ex set ft=elixir"
+      end
+      let(:filename) { 'test.ex' }
       let(:sample_text) { "$blah='test';    " }
 
       include_context 'strips trailing whitespace'
